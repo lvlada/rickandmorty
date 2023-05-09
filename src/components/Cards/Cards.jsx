@@ -4,12 +4,11 @@ import Search from "./Search";
 import "./Card.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { fetchAllCharacters } from "../Services/userAPI";
-//import PaginatedItems from "../Pagination/PaginatedItems"
 import ReactPaginate from "react-paginate";
 
 const Cards = () => {
   const [characters, setCharacters] = useState([]);
-  const { info, results } = characters;
+  //const { info, results } = characters;
   const [filterCharacters, setfilterCharacters] = useState("");
   const [pageCount, setPageCount] = useState(0);
   const [currentPage, setcurrentPage] = useState(1);
@@ -66,7 +65,7 @@ const Cards = () => {
       <div className="pagination">
         <ReactPaginate
           pageCount={pageCount}
-          pageRange={2}
+          pageRangeDisplayed={2}
           marginPagesDisplayed={2}
           onPageChange={handlePageChange}
           containerClassName={"container"}

@@ -1,4 +1,4 @@
-export const fetchAllCharacters = async (page="") => {
+export const fetchAllCharacters = async (page="1") => {
   const response = await fetch(
     `https://rickandmortyapi.com/api/character/${page}`
   );
