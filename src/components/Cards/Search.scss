@@ -1,0 +1,15 @@
+input{
+    border: 1px solid #316cf4!important;
+    border-radius: 5px!important;
+    height:2.1rem!important;
+    margin-top:2px!important;
+    padding-left:10px!important;
+    &:focus{
+        box-shadow: 3px 3px 3px rgb(185, 185, 185)!important;
+    }
+}
+button{
+    margin-left: 15px;
+    text-transform: capitalize!important;
+
+}

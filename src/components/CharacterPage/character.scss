@@ -1,0 +1,32 @@
+.back {
+  border: 2px solid white;
+  background-color: lightgrey;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  &:hover {
+    background-color: #408558;
+    border: 2px solid white;
+    color: white;
+    a {
+      color: white;
+    }
+  }
+}
+
+.titleName{
+ text-align: left;
+ margin-top: 50px;
+}
+
+.status{
+  text-align: center;
+  background-color: #408558;
+  color: white;
+  margin: 10px 0;
+}
+
+.left-side{
+  text-align: left;
+  width: 300px;
+}
