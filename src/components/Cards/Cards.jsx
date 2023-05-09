@@ -5,63 +5,68 @@ import "./Card.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { fetchAllCharacters } from "../Services/userAPI";
 import ReactPaginate from "react-paginate";
+import debounce from "lodash.debounce";
 
 const Cards = () => {
   const [characters, setCharacters] = useState([]);
-  //const { info, results } = characters;
-  const [filterCharacters, setfilterCharacters] = useState("");
+  const [filterCharacters, setFilterCharacters] = useState("");
   const [pageCount, setPageCount] = useState(0);
-  const [currentPage, setcurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    async function getCharacters() {
-      const data = await fetchAllCharacters(`?page=${currentPage}`);
-      setCharacters(data.results);
-      setPageCount(data.info.pages);
-    }
+    const getCharacters = debounce(async () => {
+      try {
+        const data = await fetchAllCharacters(`?page=${currentPage}`);
+        setCharacters(data.results);
+        setPageCount(data.info.pages);
+      } catch (error) {
+        console.error(error);
+      }
+    }, 500);
+    
     getCharacters();
   }, [currentPage]);
 
-  const getFilter = (value) => {
-    setfilterCharacters(value);
+  const handleFilterChange = (value) => {
+    setFilterCharacters(value);
   };
-  console.log("Izlaz1", characters);
-  console.log("Page", currentPage);
 
   const handlePageChange = (selectedObject) => {
-    setcurrentPage(selectedObject.selected);
-    
+    setCurrentPage(selectedObject.selected + 1);
   };
+
+  console.log('Res', characters);
+  console.log('Page', currentPage);
 
   return (
     <>
-      <Search characters={characters} getFilter={getFilter} />
+      <Search characters={characters} onFilterChange={handleFilterChange} />
 
       <div className="container cards">
         <div className="row justify-content-center">
           <div className="col-12">
             {filterCharacters.length > 0 &&
-              filterCharacters.map((characters) => (
+              filterCharacters.map((character) => (
                 <IdCard
-                  content={characters}
-                  id={characters.id}
-                  key={characters.id}
+                  content={character}
+                  id={character.id}
+                  key={character.id}
                 />
               ))}
 
             {characters &&
               filterCharacters.length === 0 &&
-              characters.map((characters) => (
+              characters.map((character) => (
                 <IdCard
-                  content={characters}
-                  id={characters.id}
-                  key={characters.id}
+                  content={character}
+                  id={character.id}
+                  key={character.id}
                 />
               ))}
           </div>
         </div>
       </div>
-      
+
       <div className="pagination">
         <ReactPaginate
           pageCount={pageCount}
@@ -73,11 +78,11 @@ const Cards = () => {
           breakClassName={"page"}
           nextLinkClassName={"page"}
           pageClassName={"page"}
-          disabledClassNae={"disabled"}
+          disabledClassName={"disabled"}
           activeClassName={"active"}
         />
       </div>
-   </>
+    </>
   );
 };
 
