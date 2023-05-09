@@ -10,7 +10,7 @@ const Cards = () => {
   const [characters, setCharacters] = useState([]);
   const { info, results } = characters;
   const [filterCharacters, setfilterCharacters] = useState("");
-  const [pageNumber, updatePageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     async function getCharacters() {
