@@ -18,10 +18,10 @@ const Cards = () => {
     async function getCharacters() {
       const data = await fetchAllCharacters(`?page=${currentPage}`);
       setCharacters(data.results);
-      setPageCount(42);
+      setPageCount(data.info.pages);
     }
     getCharacters();
-  }, []);
+  }, [currentPage]);
 
   const getFilter = (value) => {
     setfilterCharacters(value);
@@ -31,7 +31,7 @@ const Cards = () => {
 
   const handlePageChange = (selectedObject) => {
     setcurrentPage(selectedObject.selected);
-    fetchAllCharacters();
+    
   };
 
   return (
