@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Search.scss";
+import {findCharacters} from '../Services/userAPI'
 
 const Search = ({ characters, getFilter }) => {
   const [inputVal, setInputVal] = useState("");

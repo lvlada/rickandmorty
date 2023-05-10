@@ -13,3 +13,12 @@ export const fetchCharacters = async (characterId = "") => {
   const data = await response.json();
   return data;
 };
+
+
+export const findCharacters = async (characterName = "") => {
+  const response = await fetch(
+    `https://rickandmortyapi.com/api/character/?name=${characterName}`
+  );
+  const data = await response.json();
+  return data;
+};
