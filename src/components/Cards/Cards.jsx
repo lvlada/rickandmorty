@@ -17,7 +17,7 @@ const Cards = () => {
     const getCharacters = debounce(async () => {
       try {
         const data = await fetchAllCharacters(`?page=${currentPage}`);
-        setCharacters(data.results);
+        setCharacters(data.results.slice(0, 10));
         setPageCount(data.info.pages);
       } catch (error) {
         console.error(error);
