@@ -25,6 +25,7 @@ const Cards = () => {
     }, 500);
     
     getCharacters();
+    characters.length = 10;
   }, [currentPage]);
 
   const handleFilterChange = (value) => {
