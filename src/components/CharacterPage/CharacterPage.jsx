@@ -8,12 +8,11 @@ import { useNavigate } from "react-router-dom";
 const CharactersPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const characterId = location.state.characterId + '';
+  const characterId = location.state.characterId + "";
 
   const [character, setCharacter] = useState({});
-  const [locationName, setLocationName] = useState('');
-  const [origin, setOrigin] = useState('')
-
+  const [locationName, setLocationName] = useState("");
+  const [origin, setOrigin] = useState("");
 
   useEffect(() => {
     async function fetchCharacter() {
@@ -27,8 +26,7 @@ const CharactersPage = () => {
   }, []);
 
   const location1 = Object.values(character);
-  console.log('Object', character)
-  // const origin = Object.values(character['origin']);
+  console.log("Object", character);
 
   return (
     <>
@@ -51,7 +49,23 @@ const CharactersPage = () => {
           <img className="col s12" src={character.image} alt="No Image" />
         </div>
         <div className="left-side">
-          <h3 className="status">{character.status}</h3>
+          {(() => {
+            if (character.status === "Dead") {
+              return (
+                <div className="bg-danger fs-4 status badge">{character.status}</div>
+              );
+            } else if (character.status === "Alive") {
+              return (
+                <div className=" bg-success fs-4 status badge">{character.status}</div>
+              );
+            } else {
+              return (
+                <div className="bg-secondary fs-4 status badge">
+                  {character.status}
+                </div>
+              );
+            }
+          })()}
           <p>
             <strong>Gender: </strong>
             {character.gender}
@@ -72,6 +86,5 @@ const CharactersPage = () => {
     </>
   );
 };
-
 
 export default CharactersPage;

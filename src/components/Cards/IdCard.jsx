@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export default function IdCard({ content, id }) {
   const navigate = useNavigate();
   const navigateToCharacter = () => {
-    navigate("/candidate-page", { state: { characterId: id } });
+    navigate("/character-page", { state: { characterId: id } });
   };
 
   return (
@@ -23,7 +23,35 @@ export default function IdCard({ content, id }) {
           onClick={navigateToCharacter}
         >
           <div class="card hoverable">
+          {(() => {
+            if (content.status === "Dead") {
+              return (
+                <div
+                  className={'infoStatus position-absolute badge bg-danger'}
+                >
+                  {content.status}
+                </div>
+              );
+            } else if (content.status === "Alive") {
+              return (
+                <div
+                  className={'infoStatus position-absolute badge bg-success'}
+                >
+                  {content.status}
+                </div>
+              );
+            } else {
+              return (
+                <div
+                  className={'infoStatus position-absolute badge bg-secondary'}
+                >
+                  {content.status}
+                </div>
+              );
+            }
+          })()}
             <div class="card-image">
+              
               <Image src={content.image} className="idImage" />
             </div>
             <div class="card-content s12 m6 l3 xl3">
@@ -32,7 +60,9 @@ export default function IdCard({ content, id }) {
               <p>{content.location.name}</p>
             </div>
           </div>
+
         </div>
+
       </ThemeProvider>
     </>
   );
