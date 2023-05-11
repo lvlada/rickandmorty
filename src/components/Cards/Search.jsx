@@ -23,15 +23,20 @@ const Search = ({ getFilter }) => {
 
   
 
-  useEffect(() => {
-    getFilter(newFetch, pageCount, currentPage);
-  }, [newFetch, pageCount, currentPage, getFilter]);
-
   const handleClick = () => {
     setNewName(inputVal);
-    setCurrentPage(1);
+     setCurrentPage(1);
+    return getFilter(newFetch, pageCount, currentPage);
   };
 
+  // useEffect(() => {
+  //   getFilter(newFetch, pageCount, currentPage);
+  // }, [newFetch, pageCount, currentPage, getFilter]);
+
+  // const handleClick = () => {
+  //   setNewName(inputVal);
+  //   setCurrentPage(1);
+  // };
 
   return (
     <div className="container">

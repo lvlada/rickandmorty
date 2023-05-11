@@ -8,21 +8,7 @@ header {
 .header-link {
     text-decoration: none;
     color: inherit;   
+    padding: 0;
+    margin: 0;
 }
 
-.candidatesBtn{
-    border:2px solid white;
-    &:focus{
-        background-color: #087EA4;
-    }
-    &:hover{
-        background-color: #087EA4;
-        border:2px solid white;
-        a{
-            color: white;
-        }
-    }
-    a{
-        color: white;
-    }
-}
