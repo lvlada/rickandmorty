@@ -1,17 +1,40 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Search.scss";
-import {findCharacters} from '../Services/userAPI'
+import { findCharacters } from "../Services/userAPI";
+import debounce from "lodash.debounce";
 
-const Search = ({ characters, getFilter }) => {
+const Search = ({ getFilter }) => {
   const [inputVal, setInputVal] = useState("");
+  const [newName, setNewName] = useState("");
+  const [newFetch, setNewFetch] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    const getCharacters = debounce(async () => {
+      try {
+        const data = await findCharacters(`${newName}`);
+        setNewFetch(data.results.slice(0, 10));
+        setPageCount(data.info.pages);
+      } catch (error) {
+        console.error(error);
+      }
+    }, 500);
+
+    getCharacters();
+  }, [newName]);
+
+  
 
   const handleClick = () => {
-    const newRes = characters.filter((user) =>
-      user.name.toString().toLowerCase().includes(inputVal.toLowerCase())
+    setNewName(inputVal);
+    const newRes = newFetch.filter((user) =>
+      user.name.toString().toLowerCase()
     );
     return getFilter(newRes);
   };
+
 
   return (
     <div className="container">

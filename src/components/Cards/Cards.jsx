@@ -40,7 +40,7 @@ const Cards = () => {
 
   return (
     <>
-      <Search characters={characters} getFilter={handleFilterChange} />
+      <Search getFilter={handleFilterChange} />
 
       <div className="container cards">
         <div className="row justify-content-center">
