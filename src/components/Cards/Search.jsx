@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Search.scss";
 import { findCharacters } from "../Services/userAPI";
-import debounce from "lodash.debounce";
+
 
 const Search = ({ getFilter }) => {
   const [inputVal, setInputVal] = useState("");
@@ -12,15 +12,11 @@ const Search = ({ getFilter }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    const getCharacters = debounce(async () => {
-      try {
+    const getCharacters = async () => {
         const data = await findCharacters(`${newName}`);
         setNewFetch(data.results.slice(0, 10));
         setPageCount(data.info.pages);
-      } catch (error) {
-        console.error(error);
-      }
-    }, 500);
+      } 
 
     getCharacters();
   }, [newName]);
@@ -32,7 +28,8 @@ const Search = ({ getFilter }) => {
     const newRes = newFetch.filter((user) =>
       user.name.toString().toLowerCase()
     );
-    return getFilter(newRes);
+    setCurrentPage(1);
+    return getFilter(newRes, pageCount, currentPage);
   };
 
 
@@ -51,6 +48,7 @@ const Search = ({ getFilter }) => {
                 }}
                 onClick={(e) => {
                   setInputVal("");
+
                 }}
               />
               <button className="btn btn-primary" onClick={handleClick}>

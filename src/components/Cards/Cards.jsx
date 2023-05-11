@@ -27,9 +27,11 @@ const Cards = () => {
     getCharacters();
   }, [currentPage]);
 
-  const handleFilterChange = (value) => {
-    setFilterCharacters(value);
-  };
+  const handleFilterChange = (newRes, pageCount, currentPage) => {
+    setFilterCharacters(newRes);
+    setPageCount(pageCount); 
+    setCurrentPage(currentPage);
+  }
 
   const handlePageChange = (selectedObject) => {
     setCurrentPage(selectedObject.selected + 1);
