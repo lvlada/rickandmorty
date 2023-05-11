@@ -15,7 +15,7 @@ const CharactersPage = () => {
   const [origin, setOrigin] = useState("");
 
   useEffect(() => {
-    async function fetchCharacter() {
+    const fetchCharacter = async () => {
       const resData = await fetchCharacters(`/${characterId}`);
       setCharacter(resData);
       setLocationName(resData.location.name);
@@ -23,10 +23,8 @@ const CharactersPage = () => {
     }
 
     fetchCharacter();
-  }, []);
+  }, [characterId]);
 
-  const location1 = Object.values(character);
-  console.log("Object", character);
 
   return (
     <>
@@ -46,7 +44,7 @@ const CharactersPage = () => {
         <div>
           <h1 className="titleName">{character.name}</h1>
 
-          <img className="col s12" src={character.image} alt="No Image" />
+          <img className="col s12" src={character.image} alt="No Character picture" />
         </div>
         <div className="left-side">
           {(() => {

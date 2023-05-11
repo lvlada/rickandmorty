@@ -25,11 +25,8 @@ const Search = ({ getFilter }) => {
 
   const handleClick = () => {
     setNewName(inputVal);
-    const newRes = newFetch.filter((user) =>
-      user.name.toString().toLowerCase()
-    );
-    setCurrentPage(1);
-    return getFilter(newRes, pageCount, currentPage);
+     setCurrentPage(1);
+    return getFilter(newFetch, pageCount, currentPage);
   };
 
 
