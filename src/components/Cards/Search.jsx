@@ -22,12 +22,15 @@ const Search = ({ getFilter }) => {
   }, [newName]);
 
   
+// Problem, I need to click twice on button
 
   const handleClick = () => {
     setNewName(inputVal);
      setCurrentPage(1);
     return getFilter(newFetch, pageCount, currentPage);
   };
+
+  // If I use this code then pagination doesn't work at all but the button works perfectly
 
   // useEffect(() => {
   //   getFilter(newFetch, pageCount, currentPage);
