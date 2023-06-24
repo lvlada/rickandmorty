@@ -5,7 +5,7 @@ import "./Card.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { fetchAllCharacters2 } from "../Services/userAPI";
 import ReactPaginate from "react-paginate";
-import debounce from "lodash.debounce";
+
 
 const Cards = () => {
   const [characters, setCharacters] = useState([]);
