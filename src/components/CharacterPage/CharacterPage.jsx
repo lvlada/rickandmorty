@@ -73,7 +73,8 @@ const CharactersPage = () => {
           </p>
           <p>
             <strong>Origin: </strong>
-            {origin}
+           {/* {origin} */}
+           {character?.origin?.name}
           </p>
           <p>
             <strong>Species: </strong>

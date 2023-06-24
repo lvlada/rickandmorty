@@ -5,7 +5,7 @@ import "./Card.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { fetchAllCharacters2 } from "../Services/userAPI";
 import ReactPaginate from "react-paginate";
-import debounce from "lodash.debounce";
+
 
 const Cards = () => {
   const [characters, setCharacters] = useState([]);
@@ -14,18 +14,18 @@ const Cards = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [activePage, setActivePage] = useState(0); 
 
-  useEffect(() => {
-    const getCharacters = debounce(async () => {
-      try {
-        const data = await fetchAllCharacters2(currentPage, filterName);
-        setCharacters(data.results.slice(0, 10));
-        setPageCount(data.info.pages);
-      } catch (error) {
-        console.error(error);
-      }
-    }, 100);
+  const getCharacters = async(currentPage, filterName)=> {
+    try {
+      const data = await fetchAllCharacters2(currentPage, filterName);
+      setCharacters(data.results.slice(0, 10));
+      setPageCount(data.info.pages);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
-    getCharacters();
+  useEffect(() => {
+    getCharacters(currentPage, filterName)
   }, [currentPage, filterName]);
 
   const handleFilterChange = (newName) => {
