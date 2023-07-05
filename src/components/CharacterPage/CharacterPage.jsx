@@ -12,7 +12,7 @@ const CharactersPage = () => {
 
   const [character, setCharacter] = useState({});
   const [locationName, setLocationName] = useState("");
-  const [origin, setOrigin] = useState("");
+  // const [origin, setOrigin] = useState("");
 
   useEffect(() => {
     const fetchCharacter = async () => {
@@ -44,7 +44,7 @@ const CharactersPage = () => {
         <div>
           <h1 className="titleName">{character.name}</h1>
 
-          <img className="col s12" src={character.image} alt="No Character picture" />
+          <img className="col s12" src={character.image}/>
         </div>
         <div className="left-side">
           {(() => {
