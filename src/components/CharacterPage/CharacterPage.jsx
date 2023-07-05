@@ -44,7 +44,7 @@ const CharactersPage = () => {
         <div>
           <h1 className="titleName">{character.name}</h1>
 
-          <img className="col s12" src={character.image}/>
+          <img className="col s12" src={character.image} alt=""/>
         </div>
         <div className="left-side">
           {(() => {
