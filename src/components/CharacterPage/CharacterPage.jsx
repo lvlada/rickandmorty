@@ -19,7 +19,7 @@ const CharactersPage = () => {
       const resData = await fetchCharacters(`/${characterId}`);
       setCharacter(resData);
       setLocationName(resData.location.name);
-      setOrigin(resData.origin.name);
+      // setOrigin(resData.origin.name);
     }
 
     fetchCharacter();
